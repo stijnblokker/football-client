@@ -4,6 +4,7 @@ const baseUrl = "http://localhost:4000";
 export const FETCH_PLAYER_SUCCESS = "FETCH_PLAYER_SUCCESS";
 export const CHANGE_TEAM_SUCCESS = "CHANGE_TEAM_SUCCESS"
 export const DELETE_PLAYER_SUCCESS = "DELETE_PLAYER_SUCCESS"
+export const PLAYER_CREATE_SUCCESS = "PLAYER_CREATE_SUCCESS"
 
 const fetchPlayerSuccess = player => ({
   type: FETCH_PLAYER_SUCCESS,
@@ -45,6 +46,23 @@ export const deletePlayer = (id, teamId) => (dispatch, getState) => {
     .then(response => {
       console.log(response);
       dispatch(deletePlayerSuccess(id));
+    })
+    .catch(console.error);
+};
+
+const playerCreateSuccess = player => ({
+  type: PLAYER_CREATE_SUCCESS,
+  payload: player
+});
+
+export const createPlayer = data => (dispatch, getState) => {
+  console.log('create', data);
+  
+  request
+    .post(`${baseUrl}/players`)
+    .send({ name: data.name, number: Number(data.number), teamId: Number(data.teamId)})
+    .then(response => {
+      dispatch(playerCreateSuccess(response.body));
     })
     .catch(console.error);
 };
