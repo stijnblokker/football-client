@@ -8,7 +8,6 @@ class TeamDetailsContainer extends React.Component {
     this.props.loadTeam(Number(this.props.match.params.id));
   }
   render() {
-    console.log(this.props.team);
     return <TeamDetails team={this.props.team} />;
   }
 }

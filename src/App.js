@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 // import Home from "./components/Home";
 import TeamListContainer from "./components/TeamListContainer";
 import TeamDetailsContainer from "./components/TeamDetailsContainer";
+import PlayerDetailsContainer from "./components/PlayerDetailsContainer"
 // import LoginFormContainer from "./components/LoginFormContainer";
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
         {/* <Route path="/" exact component={Home} /> */}
         <Route path="/" exact component={TeamListContainer} />
         <Route path="/teams/:id" exact component={TeamDetailsContainer} />
+        <Route path="/players/:id" exact component={PlayerDetailsContainer} />
         {/* <Route path="/login" exact component={LoginFormContainer} /> */}
       </div>
     );

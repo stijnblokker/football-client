@@ -1,8 +1,8 @@
 import request from "superagent";
+const baseUrl = "http://localhost:4000";
 
 export const TEAMS_FETCHED = "TEAMS_FETCHED";
 
-const baseUrl = "http://localhost:4000";
 
 const teamsFetched = teams => ({
   type: TEAMS_FETCHED,
@@ -46,9 +46,7 @@ const fetchTeamSuccess = team => ({
 });
 
 export const loadTeam = id => (dispatch, getState) => {
-  console.log("CAN WE GET THE STATE??", getState());
   request(`${baseUrl}/teams/${id}`).then(response => {
-    console.log(response);
     dispatch(fetchTeamSuccess(response.body));
   });
 };
