@@ -1,15 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loadPlayer, changeTeam } from "../actions/player";
+import { loadPlayer, changeTeam, deletePlayer } from "../actions/player";
 import { loadTeams } from "../actions/teams"
 
 import PlayerDetails from './PlayerDetails'
 import Transfer from './Transfer'
+import PlayerDelete from './PlayerDelete'
 
 class PlayerDetailsContainer extends React.Component {
     state = {
         id: '',
-        newTeam: ''
+        newTeam: '',
+        delete: false
     };
 
     componentDidMount() {
@@ -17,13 +19,22 @@ class PlayerDetailsContainer extends React.Component {
         this.props.loadPlayer(Number(this.props.match.params.id));       
     }
 
-    onSubmit = event => {
+    onTransfer = event => {
         event.preventDefault();
         if (!this.state.newTeam) {
             return console.log("no new team selected...");
         }
         this.props.changeTeam(this.state.id, this.state.newTeam);
     };
+    
+    onDelete = event => {
+        event.preventDefault();
+        if (!this.state.delete) {
+            return this.setState({ id: this.props.player.id, delete: true})
+        }
+        this.props.deletePlayer(this.state.id)
+        this.props.history.push(`/`);
+    }
 
     onChange = event => {
         this.setState({
@@ -42,8 +53,12 @@ class PlayerDetailsContainer extends React.Component {
                     teams={this.props.teams}
                     playerTeam={this.props.player.team && this.props.player.team.id}
                     onChange={this.onChange}
-                    onSubmit={this.onSubmit}
+                    onSubmit={this.onTransfer}
                 />
+
+                <PlayerDelete
+                delete={this.state.delete}
+                onSubmit={this.onDelete} /> 
             </div>
         )
     }
@@ -56,5 +71,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loadPlayer, loadTeams, changeTeam }
+    { loadPlayer, loadTeams, changeTeam, deletePlayer }
 )(PlayerDetailsContainer);
