@@ -23,17 +23,15 @@ const changeTeamSuccess = team => ({
 
 export const changeTeam = (id, team) => (dispatch, getState) => {
   request
-  .put(`${baseUrl}/players/${id}`)
-  .send({
-    teamId: team
-})
-  .catch(console.error);
-  
+    .put(`${baseUrl}/players/${id}`)
+    .send({
+      teamId: team
+    })
+    .catch(console.error);
+
   request(`${baseUrl}/teams/${team}`).then(response => {
     dispatch(changeTeamSuccess(response.body));
   });
-  
-
 };
 
 const deletePlayerSuccess = player => ({
@@ -43,12 +41,10 @@ const deletePlayerSuccess = player => ({
 
 export const deletePlayer = (id) => (dispatch, getState) => {
   request
-  .delete(`${baseUrl}/players/${id}`)
-  .then(response => { 
-    console.log(response);
-    dispatch(deletePlayerSuccess(response.body));
-  })
-  .catch(console.error);
-  
-
+    .delete(`${baseUrl}/players/${id}`)
+    .then(response => {
+      console.log(response);
+      dispatch(deletePlayerSuccess(response.body));
+    })
+    .catch(console.error);
 };

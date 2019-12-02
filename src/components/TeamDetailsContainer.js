@@ -1,14 +1,37 @@
 import React from "react";
 import TeamDetails from "./TeamDetails";
+import TeamDelete from './TeamDelete'
 import { connect } from "react-redux";
-import { loadTeam } from "../actions/teams";
+import { loadTeam, deleteTeam } from "../actions/teams";
 
 class TeamDetailsContainer extends React.Component {
+  state = {
+    delete: false
+  }
   componentDidMount() {
     this.props.loadTeam(Number(this.props.match.params.id));
   }
+
+  onDelete = event => {
+    event.preventDefault();
+    if (!this.state.delete) {
+      return this.setState({delete: true })
+    }
+    this.props.deleteTeam(this.props.match.params.id)
+    this.props.history.push(`/`);
+  }
+
   render() {
-    return <TeamDetails team={this.props.team} />;
+    console.log(this.state);
+    
+    return (
+      <div>
+      <TeamDetails team={this.props.team} />
+      <TeamDelete
+      delete={this.state.delete}
+      onSubmit={this.onDelete} />
+      </div>
+    )
   }
 }
 
@@ -18,5 +41,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadTeam }
+  { loadTeam, deleteTeam }
 )(TeamDetailsContainer);
