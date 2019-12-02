@@ -39,12 +39,12 @@ const deletePlayerSuccess = player => ({
   payload: player
 })
 
-export const deletePlayer = (id) => (dispatch, getState) => {
+export const deletePlayer = (id, teamId) => (dispatch, getState) => {
   request
     .delete(`${baseUrl}/players/${id}`)
     .then(response => {
       console.log(response);
-      dispatch(deletePlayerSuccess(response.body));
+      dispatch(deletePlayerSuccess(id));
     })
     .catch(console.error);
 };
