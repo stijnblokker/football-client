@@ -10,27 +10,13 @@ const teamsFetched = teams => ({
 });
 
 export const loadTeams = () => (dispatch, getState) => {
-  // Request is not made
-
-  // how to debug:
-  // - console.log(getState()) to see what getState() returns
-  // check the logic to see if it's correct
-  // - console.log(getState().teams.length !== 0) // does this check pass?
-
-  // guard statement that checks if we already have teams
   if (getState().teams.length !== 0) return;
 
-  // - put a console.log below you guard statement to see if it passes
-  // console.log('Guard statement passed??')
-
-  // Check if request is made succesfully
-  request(`${baseUrl}/teams`) // url correct? -> make request with httpie first
+  request(`${baseUrl}/teams`)
     .then(response => {
-      // console.log(response) -> have a look at the body of the request or status code
-      // dispatch an EVENTS_FETCHED action that contains the events
-      dispatch(teamsFetched(response.body)); // check redux devtools if action got dispatched
+      dispatch(teamsFetched(response.body));
     })
-    .catch(console.error); // if you don't console response, check the console for errors
+    .catch(console.error);
 };
 
 export const TEAM_CREATE_SUCCESS = "TEAM_CREATE_SUCCESS";
@@ -41,12 +27,11 @@ const teamCreateSuccess = team => ({
 });
 
 export const createTeam = data => (dispatch, getState) => {
-  const token = getState().auth;
-
+  // const token = getState().auth;
   request
     .post(`${baseUrl}/teams`)
-    .set("Authorization", `Bearer ${token}`)
-    .send(data)
+    // .set("Authorization", `Bearer ${token}`)
+    .send( {name: data } )
     .then(response => {
       dispatch(teamCreateSuccess(response.body));
     })
