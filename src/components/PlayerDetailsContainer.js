@@ -32,8 +32,8 @@ class PlayerDetailsContainer extends React.Component {
         if (!this.state.delete) {
             return this.setState({ id: this.props.player.id, delete: true})
         }
-        this.props.deletePlayer(this.state.id)
-        this.props.history.push(`/`);
+        this.props.deletePlayer(this.state.id, this.props.player.teamId)
+        this.props.history.push(`/teams/${this.props.player.teamId}`);
     }
 
     onChange = event => {
