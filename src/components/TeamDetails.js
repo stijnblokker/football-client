@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from 'react-router-dom'
+
 function TeamDetails(props) {
   if (!props.team.name) return "Loading";
 
@@ -9,8 +11,10 @@ function TeamDetails(props) {
       <ul>
         {props.team.players.map(player => {
           return (
-            <li key={player.id}> 
-              {player.number} : {player.name}
+            <li key={player.id}>
+              <Link to={`/players/${player.id}`}>
+                {player.number} : {player.name}
+              </Link>
             </li>
           );
         })}
