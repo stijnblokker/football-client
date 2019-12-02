@@ -3,6 +3,7 @@ const baseUrl = "http://localhost:4000";
 
 export const FETCH_PLAYER_SUCCESS = "FETCH_PLAYER_SUCCESS";
 export const CHANGE_TEAM_SUCCESS = "CHANGE_TEAM_SUCCESS"
+export const DELETE_PLAYER_SUCCESS = "DELETE_PLAYER_SUCCESS"
 
 const fetchPlayerSuccess = player => ({
   type: FETCH_PLAYER_SUCCESS,
@@ -35,3 +36,19 @@ export const changeTeam = (id, team) => (dispatch, getState) => {
 
 };
 
+const deletePlayerSuccess = player => ({
+  type: DELETE_PLAYER_SUCCESS,
+  payload: player
+})
+
+export const deletePlayer = (id) => (dispatch, getState) => {
+  request
+  .delete(`${baseUrl}/players/${id}`)
+  .then(response => { 
+    console.log(response);
+    dispatch(deletePlayerSuccess(response.body));
+  })
+  .catch(console.error);
+  
+
+};
