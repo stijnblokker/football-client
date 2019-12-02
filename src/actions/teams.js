@@ -2,7 +2,9 @@ import request from "superagent";
 const baseUrl = "http://localhost:4000";
 
 export const TEAMS_FETCHED = "TEAMS_FETCHED";
-
+export const TEAM_CREATE_SUCCESS = "TEAM_CREATE_SUCCESS";
+export const FETCH_TEAM_SUCCESS = "FETCH_TEAM_SUCCESS";
+export const DELETE_TEAM_SUCCESS = "DELETE_TEAM_SUCCESS"
 
 const teamsFetched = teams => ({
   type: TEAMS_FETCHED,
@@ -19,7 +21,6 @@ export const loadTeams = () => (dispatch, getState) => {
     .catch(console.error);
 };
 
-export const TEAM_CREATE_SUCCESS = "TEAM_CREATE_SUCCESS";
 
 const teamCreateSuccess = team => ({
   type: TEAM_CREATE_SUCCESS,
@@ -31,14 +32,13 @@ export const createTeam = data => (dispatch, getState) => {
   request
     .post(`${baseUrl}/teams`)
     // .set("Authorization", `Bearer ${token}`)
-    .send( {name: data } )
+    .send({ name: data })
     .then(response => {
       dispatch(teamCreateSuccess(response.body));
     })
     .catch(console.error);
 };
 
-export const FETCH_TEAM_SUCCESS = "FETCH_TEAM_SUCCESS";
 
 const fetchTeamSuccess = team => ({
   type: FETCH_TEAM_SUCCESS,
@@ -49,4 +49,19 @@ export const loadTeam = id => (dispatch, getState) => {
   request(`${baseUrl}/teams/${id}`).then(response => {
     dispatch(fetchTeamSuccess(response.body));
   });
+};
+
+const deleteTeamSuccess = team => ({
+  type: DELETE_TEAM_SUCCESS,
+  payload: team
+})
+
+export const deleteTeam = (id) => (dispatch, getState) => {
+  request
+    .delete(`${baseUrl}/teams/${id}`)
+    .then(response => {
+      console.log(response);
+      dispatch(deleteTeamSuccess(Number(id)));
+    })
+    .catch(console.error);
 };
