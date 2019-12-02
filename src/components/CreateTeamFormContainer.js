@@ -16,7 +16,9 @@ class CreateTeamFormContainer extends React.Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.createTeam(this.state);
+    console.log('new team name', this.state.name);
+    
+    this.props.createTeam(this.state.name);
     this.setState({
       name: ""
     });
