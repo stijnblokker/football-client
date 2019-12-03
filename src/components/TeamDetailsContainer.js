@@ -3,6 +3,7 @@ import TeamDetails from "./TeamDetails";
 import TeamDelete from './TeamDelete'
 import { connect } from "react-redux";
 import { loadTeam, deleteTeam } from "../actions/teams";
+import CreatePlayerFormContainer from "./CreatePlayerFormContainer";
 
 class TeamDetailsContainer extends React.Component {
   state = {
@@ -27,6 +28,7 @@ class TeamDetailsContainer extends React.Component {
     return (
       <div>
       <TeamDetails team={this.props.team} />
+      <CreatePlayerFormContainer />
       <TeamDelete
       delete={this.state.delete}
       onSubmit={this.onDelete} />
