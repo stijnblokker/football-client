@@ -13,6 +13,7 @@ class TeamsListContainer extends React.Component {
       <div>
         <TeamsList teams={this.props.teams} />
         {/* {this.props.loggedIn ? ( */}
+        <hr />
           <CreateTeamFormContainer />
          {/* ) : (
            <Link to="/login">Please log in to create teams</Link>

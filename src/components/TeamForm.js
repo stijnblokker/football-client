@@ -5,8 +5,8 @@ export default function(props) {
     <form onSubmit={props.onSubmit}>
       <h3>Add a team</h3>
       <label>Team Name</label>
-      <input value={props.name} name="name" onChange={props.onChange} /> <br />
-      <input type="submit" />
+      <input value={props.name} required name="name" onChange={props.onChange} /> <br />
+      <button>Add team</button>
     </form>
   );
 }

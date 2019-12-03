@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import logo from './football.png'
+import './style.css'
 // import Home from "./components/Home";
 import TeamListContainer from "./components/TeamListContainer";
 import TeamDetailsContainer from "./components/TeamDetailsContainer";
@@ -10,11 +12,24 @@ import PlayerDetailsContainer from "./components/PlayerDetailsContainer"
 class App extends Component {
   render() {
     // console.log('login?', this.props.loggedIn);
-    
+
     return (
-      <div>
+      <div className="container">
+        <header>
+          <img src={logo} alt="football logo" />
+          <h1>Football app</h1>
+          <hr />
+        </header>
+        <nav>
+          <h2>
+            <Link to="/">Teams</Link> 
+            {/* {this.props.team.name && <Link to={``}>this.props.team.name</Link>} */}
+            {/* {this.props.player.name  && this.props.player.name} */}
+          </h2> 
+
+        </nav>
         {/* <Link to="/"> Home </Link> */}
-        <Link to="/"> Teams </Link>
+
         {/* {this.props.loggedIn ? (
           "You're logged in"
         ) : (
@@ -33,6 +48,9 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     // loggedIn: state.auth !== null
+    teams: state.teams,
+    team: state.team,
+    player: state.player
   };
 };
 
