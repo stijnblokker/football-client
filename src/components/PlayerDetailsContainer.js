@@ -49,13 +49,15 @@ class PlayerDetailsContainer extends React.Component {
         return (
             <div>
                 <PlayerDetails player={this.props.player} />
+                <hr />
                 <Transfer
                     teams={this.props.teams}
                     playerTeam={this.props.player.team && this.props.player.team.id}
                     onChange={this.onChange}
                     onSubmit={this.onTransfer}
                 />
-
+                
+                <hr />
                 <PlayerDelete
                 delete={this.state.delete}
                 onSubmit={this.onDelete} /> 

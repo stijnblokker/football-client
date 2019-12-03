@@ -6,7 +6,7 @@ function PlayerDetails(props) {
 
   return (
     <div>
-        name: {props.player.name} <br />
+        <h2>{props.player.name} </h2>
         number: {props.player.number} <br />
         team: <Link to={`/teams/${props.player.team.id}`}>{props.player.team.name}</Link>
     </div>

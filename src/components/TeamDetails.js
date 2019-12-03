@@ -7,7 +7,7 @@ function TeamDetails(props) {
 
   return (
     <div>
-      {props.team.name}
+      <h2>{props.team.name}</h2>
       <ul>
         {props.team.players.map(player => {
           return (

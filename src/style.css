@@ -1,0 +1,43 @@
+img {
+    max-width: 100px;
+    float: left;
+}
+/* h1 {
+    font-size: 80px;
+} */
+.container {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 700px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+hr {
+    border: 2px solid black; 
+}
+
+button {
+    color:black;
+    font-size: 1em;
+    margin: 0.25em;
+    padding: 0.25em;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+input {
+    color:black;
+    font-size: 1em;
+    margin: 0.25em;
+    /* padding: 0.25em 1em; */
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+  select {
+    color:black;
+    font-size: 1em;
+    margin: 0.25em;
+    /* padding: 0.25em 1em; */
+    border: 1px solid black;
+    border-radius: 3px;
+  }

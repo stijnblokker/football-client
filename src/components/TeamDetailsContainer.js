@@ -28,7 +28,9 @@ class TeamDetailsContainer extends React.Component {
     return (
       <div>
       <TeamDetails team={this.props.team} />
+      <hr />
       <CreatePlayerFormContainer />
+      <hr />
       <TeamDelete
       delete={this.state.delete}
       onSubmit={this.onDelete} />
